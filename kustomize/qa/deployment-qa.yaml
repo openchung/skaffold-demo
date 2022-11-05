@@ -1,43 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
-  labels:
-    app: demo-app
   name: demo-app
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: demo-app
-  strategy: {}
-  template:
-    metadata:
-      creationTimestamp: null
-      labels:
-        app: demo-app
-    spec:
-      containers:
-        - image: docker.io/dannielchung/springboot-demo:aarch64
-          name: springboot-demo
-          resources:
-            requests:
-              memory: 64M
-              cpu: 200m
-            limits:
-              memory: 128M
-              cpu: 400m
-          livenessProbe:
-            initialDelaySeconds: 30
-            httpGet:
-              port: 8080
-              path: /alive
-          readinessProbe:
-            periodSeconds: 5
-            failureThreshold: 1
-            httpGet:
-              port: 8080
-              path: /actuator/health
-
-status: {}
+  replicas: 2
 
