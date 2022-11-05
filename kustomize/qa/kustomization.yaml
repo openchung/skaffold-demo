@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../base
+
+patchesStrategicMerge:
+  - deployment-qa.yaml
+  - use-configmap.yaml
+
+configMapGenerator:
+  - name: demo-config
+    files:
+      - application.properties

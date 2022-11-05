@@ -1,0 +1,19 @@
+apiVersion: skaffold/v1
+kind: Config
+build:
+  artifacts:
+  - image: docker.io/dannielchung/springboot-demo
+    jib:
+      args: ['-DskipTests']
+deploy:
+#  kubectl:
+#    manifests:
+#      - k8s/*.yaml
+  kustomize:
+    path: kustomize/base
+
+profiles:
+  - name: qa
+    deploy:
+      kustomize:
+        path: kustomize/qa
